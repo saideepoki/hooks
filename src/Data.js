@@ -18,8 +18,8 @@ import {useState} from 'react';
 function Data() {
     const [nData,setnData] = useState(data);
 
-    const handleClear = () => {
-        setnData([]);
+    const handleClear = (itemId) => {
+        setnData(nData.filter((elem) => elem.id !==itemId));
     }
 
     return (
@@ -30,12 +30,14 @@ function Data() {
                         return (
                             <li key = {item.id}>
                                 {item.name}
+                                <br/>
+                                <button onClick = {() => handleClear(item.id)}>clear</button>
                             </li>
                         )
+
                     })
                 }
             </ul>
-            <button onClick = {handleClear}>clear</button>
         </div>
     )
 }
